@@ -33,8 +33,13 @@ class UserAdapter {
         .then(resp => resp.json())
         .then(json => {
             console.log(json)
+
+            new User(json.data.user)
+            clearNewUserForm()
+            renderLoginForm()
+
             //when logged in create new user instance
-            //clear fields
+
             //display login field
         })
         .catch(error => {

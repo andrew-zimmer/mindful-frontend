@@ -25,9 +25,14 @@ class SessionAdapter {
         .then(res => res.json())
         .then(json => {
             console.log(json)
+            //creates sessin instance
+            //changes value of display of form
+            //display user home page content(mood tracker form)
         })
         .catch(error => {
             console.log(error)
+            //show error on screen
+            //clear password field
         })
     }
 }
