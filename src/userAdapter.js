@@ -3,7 +3,7 @@ class UserAdapter {
         this.baseURL = "http://localhost:3000/v1/users"
     }
 
-
+    static render
 
     sendNewUserRequest(){
         const username = document.getElementById('username').value
@@ -32,15 +32,9 @@ class UserAdapter {
         fetch(this.baseURL, configObj)
         .then(resp => resp.json())
         .then(json => {
-            console.log(json)
-
-            new User(json.data.user)
-            clearNewUserForm()
-            renderLoginForm()
-
-            //when logged in create new user instance
-
-            //display login field
+            let user = new User(json.data.user)
+            user.renderLoginFormForUser
+            //show log in page for user to log in
         })
         .catch(error => {
             console.log(error)

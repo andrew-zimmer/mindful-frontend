@@ -1,28 +1,20 @@
 const userAdapter = new UserAdapter()
-const createUser = document.getElementById('submitUser')
+const sessionAdapter = new SessionAdapter()
+const mainDiv = document.getElementById('main')
+
+const signUpBtn = document.getElementById('signUp')
+const logInBtn = document.getElementById('login')
 
 
-function createNewUser(e){
-    e.preventDefault()
-    console.log(e.target)
-    userAdapter.sendNewUserRequest()
-}
+signUpBtn.addEventListener('click', () => {
+    User.renderSignUpForm()
+})
 
-function clearNewUserForm(){
-    const newUserInputs = document.querySelectorAll('#createUser input')
-    let array = [...newUserInputs]
-    array.map(x => x.value = '')
-}
-
-function renderLoginForm(){
-    const containers = [...document.getElementsByClassName('container')]
-    const loginForm = document.getElementById('loginForm')
-
-    containers.map(x => x.style.display = 'none')
-    loginForm.style.display = 'block'
-}
+logInBtn.addEventListener('click', () => {
+    Session.renderLoginForm()
+})
 
 document.addEventListener('DOMContentLoaded', () => {
-    createUser.addEventListener('click', createNewUser)
+
 
 })
