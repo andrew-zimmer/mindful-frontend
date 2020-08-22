@@ -26,7 +26,9 @@ class SessionAdapter {
         .then(json => {
             console.log(json)
             new Session(json.data.user)
-            //display user home page content(mood tracker form)
+            Mood.renderMoodForm()
+            //add sign out button
+            //add username to view
         })
         .catch(error => {
             console.log(error)

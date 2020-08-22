@@ -1,5 +1,6 @@
 const userAdapter = new UserAdapter()
 const sessionAdapter = new SessionAdapter()
+const moodAdapter = new MoodsAdapter()
 const mainDiv = document.getElementById('main')
 
 const signUpBtn = document.getElementById('signUp')
