@@ -38,6 +38,25 @@
   cursor: pointer;
 }
 
-#emote {
+.far {
   font-size: 75px;
+}
+
+.mood-button:hover {
+  background-color: rgb(124, 118, 118);
+  border-width: 10px;
+  cursor: pointer;
+}
+.mood-button-active {
+  background-color: rgb(218, 231, 34);
+}
+
+.mood-button-active:hover{
+  background-color: rgb(223, 245, 28);
+}
+
+.nav-btn:hover{
+  background-color: rgb(8, 79, 235);
+  color: white;
+  cursor: pointer;
 }

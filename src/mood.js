@@ -12,49 +12,40 @@ class Mood {
     }
 
     static renderMoodForm(){
-        const mainDiv = document.getElementById('main')
+        console.log('click')
+        let mainDiv = document.getElementById('main')
+        let btn = document.createElement('button')
+        mainDiv.innerHTML = `<h2> How are you feeling? </h2>`
+        btn.innerText = 'Submit'
 
-        mainDiv.innerHTML = (
-            `<h2 class='text-center'> Mood form </h2>
-            <form class='text-center' id='mood'>
-                <div id='emote'> <i class="far fa-laugh-beam"></i> </div>
-                <input type="range" class="form-control-range" id="formControlRange" min='0' max='4' step='1' value='0'>
-
-                <input id='mood-comment' type='textarea' placeholder='Comment'>
-
-                <button id='submit-mood' class='w-75 mt-2 rounded'>Submit</button>
-            </form>`
-        )
-        //add  activites
-        const moodSubmit = document.getElementById('submit-mood')
-        moodSubmit.addEventListener('click', (e) => {
-            e.preventDefault()
-            moodsAdapter.sendNewMoodFetch()
+        btn.addEventListener('click', () => {
+            const moodSelect = document.getElementsByClassName('mood-button-active')
+            mood = moodSelect[0].id
         })
-        const range = document.getElementById('formControlRange')
-        range.onchange = function(e){
-            const emoteDiv = document.getElementById('emote')
-            console.log('clicky clack')
-            if (e.target.value === '0'){
-                emoteDiv.innerHTML = `<i class="far fa-laugh-beam"></i>`
-            }else if (e.target.value === '1'){
-                emoteDiv.innerHTML = `<i class="far fa-smile"></i>`
-            }else if (e.target.value === '2'){
-                emoteDiv.innerHTML = `<i class="far fa-meh"></i>`
-            }else if (e.target.value === '3'){
-                emoteDiv.innerHTML = `<i class="far fa-frown"></i>`
-            }else if (e.target.value === '4'){
-                emoteDiv.innerHTML = `<i class="far fa-sad-tear"></i>`
-            }
 
+        let emoteDiv = document.createElement('div')
+        emoteDiv.classList.add('row', 'text-center')
+        for (const mood in emotions){
 
+            let divIt = document.createElement('div')
+            divIt.classList.add('emote', 'col-3', 'border', 'border-solid', 'mood-button', 'text-center')
 
+            divIt.id = mood
 
+            divIt.innerHTML = emotions[mood] + `<br> ${mood}`
+            emoteDiv.append(divIt)
 
-
-
+            divIt.addEventListener('click', (e) => {
+                let currentAct = document.getElementsByClassName('mood-button-active')
+                if (!currentAct[0]){
+                    divIt.classList.add('mood-button-active')
+                }else {
+                    currentAct[0].classList.remove('mood-button-active')
+                    divIt.classList.add('mood-button-active')
+                }
+            })
         }
+        mainDiv.append(emoteDiv)
+        mainDiv.append(btn)
     }
-
-
 }

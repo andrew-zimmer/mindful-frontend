@@ -36,4 +36,36 @@ class SessionAdapter {
             //clear password field
         })
     }
+
+    sendLogOutRequest(){
+        const id = Session.all[0].id
+
+        let sessionObj = {
+            id
+        }
+
+        let configObj = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json'
+            },
+            body: JSON.stringify(sessionObj)
+        }
+
+        fetch(this.baseURL+`/${id}`, configObj)
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+            new Session(json.data.user)
+            Mood.renderMoodForm()
+            //add sign out button
+            //add username to view
+        })
+        .catch(error => {
+            console.log(error)
+            //show error on screen
+            //clear password field
+        })
+    }
 }
