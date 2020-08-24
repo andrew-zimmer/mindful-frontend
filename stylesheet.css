@@ -60,3 +60,7 @@
   color: white;
   cursor: pointer;
 }
+
+#comment {
+  height: 150px;
+}

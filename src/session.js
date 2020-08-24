@@ -1,7 +1,7 @@
 class Session {
     static all = []
-    constructor({token, id, email}){
-        this.token = token
+    constructor({authentication_token, id, email}){
+        this.token = authentication_token
         this.id = id
         this.email = email
 
@@ -50,7 +50,7 @@ class Session {
             })
 
             moodForm.addEventListener('click', () => {
-                Mood.moodForm()
+                Mood.renderMoodForm()
             })
             //add link to emotion graph
         })

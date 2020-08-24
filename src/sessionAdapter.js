@@ -27,7 +27,10 @@ class SessionAdapter {
             console.log(json)
             new Session(json.data.user)
             Mood.renderMoodForm()
-            //add sign out button
+            const moods = json.data.user.moods
+            for (let x of moods){
+                new Mood(x)
+            }
             //add username to view
         })
         .catch(error => {
@@ -59,6 +62,7 @@ class SessionAdapter {
             console.log(json)
             new Session(json.data.user)
             Mood.renderMoodForm()
+
             //add sign out button
             //add username to view
         })

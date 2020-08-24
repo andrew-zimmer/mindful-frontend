@@ -4,20 +4,39 @@ class MoodsAdapter {
     }
 
     sendNewMoodFetch(){
-        const mood = document.getElementById('mood')
-        const comment = document.getElementById('mood-comment')
-        const id = User.all.first.id
-        const token = Session.all.first.token
-        const email = Session.all.first.email
 
-        let sessionObj = {
+        const comment = document.getElementById('comment').value
+        const id = Session.all[0].id
+        const token = Session.all[0].token
+        const email = Session.all[0].email
+
+        let moodObj = {
             user_token: token,
             user_email: email,
-            user: {
+            mood: {
                 mood,
                 comment,
                 user_id: id
             }
         }
+
+        let configObj = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accepts': 'application/json'
+            },
+            body: JSON.stringify(moodObj)
+        }
+
+        fetch(this.baseURL, configObj)
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+            new Mood(json.data.mood)
+            Mood.renderMyChart()
+            //create new mood
+            //show user graph
+        })
     }
 }
