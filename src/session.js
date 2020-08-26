@@ -37,12 +37,24 @@ class Session {
             logOut.classList.add('nav-btn')
             logOut.innerHTML = `<p> Log Out </p>`
 
+            let moodChart = document.createElement('li')
+            moodChart.classList.add('nav-btn')
+            moodChart.innerHTML = '<p>Mood Chart</p>'
+
 
             let moodForm = document.createElement('li')
             moodForm.classList.add('nav-btn')
             moodForm.innerHTML = `<p> How Are You Feeling? </p>`
+
             dropDown.append(moodForm)
+            dropDown.append(moodChart)
             dropDown.append(logOut)
+
+            moodChart.addEventListener('click', () => {
+                Mood.renderMyChart()
+                dropDown.classList.add('collapsed')
+                navBar.classList.remove('show')
+            })
 
             logOut.addEventListener('click', () => {
                 sessionAdapter.sendLogOutRequest()
@@ -51,8 +63,9 @@ class Session {
 
             moodForm.addEventListener('click', () => {
                 Mood.renderMoodForm()
+                dropDown.classList.add('collapsed')
+                navBar.classList.remove('show')
             })
-            //add link to emotion graph
         })
     }
 }

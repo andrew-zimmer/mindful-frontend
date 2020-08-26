@@ -11,17 +11,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-        <a class="navbar-brand" href="#">Mindful</a>
+    <nav class='navbar navbar-expand-s navbar-light bg-light'>
+        <h2><a class="navbar-brand" href="#">Mindful</a></h2>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button id='navDropDown' class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse bg-light" id="navbarSupportedContent">
             <ul id='nav-dropDown' class='navbar-nav mr-auto'>
-                <li class='nav-btn' id='login'>
-                    <p>LogIn</p>
+                <li class='nav-btn' id='login' data-toggle='collapse'>
+                    <p data-toggle='collapse'>LogIn</p>
                 </li>
                 <li class='nav-btn' id='signUp'>
                     <p>Sign Up</p>
@@ -32,10 +32,10 @@
     </nav>
 
 
-    <div id='main' class="container mt-5 border border-solid border-dark rounded p-5">
-        Suspendisse non nisl sit amet velit hendrerit rutrum. Nam eget dui. Nunc nulla. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Fusce convallis metus id felis luctus adipiscing.
-
-        Curabitur blandit mollis lacus. Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Curabitur vestibulum aliquam leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Morbi mattis ullamcorper velit.
+    <div id='main' class="container mt-5 border border-solid border-dark rounded p-5 bg-light">
+        <h3 class='text-center'> Welcome to Mindful </h3>
+        <p>Mindful is a mood tracking application that gives a person the means to express their mood, and allow them to explore those feelings and to help track patterns that can lead to deeper selfawareness and understanding.</p>
+        <p>Not only is this application meant to track your less attractive moods (anger, frustration, confusion), but to also express your better moods (happy, silly, relaxed) as well. It's just as important to understand what makes you feel good and motivates you, as it is to understand the patterns that lead to unwanted those emotions.</p>
     </div>
 
 

@@ -22,6 +22,7 @@ class Mood {
             const moodSelect = document.getElementsByClassName('mood-button-active')
             mood = moodSelect[0].id
             Mood.renderCommentField()
+            //show which emotion they chose
         })
 
         let emoteDiv = document.createElement('div')
@@ -33,7 +34,7 @@ class Mood {
 
             divIt.id = mood
 
-            divIt.innerHTML = emotions[mood] + `<br> ${mood}`
+            divIt.innerHTML = emotions[mood].pic + `<br> ${mood}`
             emoteDiv.append(divIt)
 
             divIt.addEventListener('click', (e) => {
@@ -60,6 +61,7 @@ class Mood {
         Is there a pattern in how I emotionally react?
         What can I do right now to feel better?
         </textarea>
+        <button id='backBtn'>Back</button>
         <button id='submitComment'> Submit </button>`
 
         mainDiv.innerHTML = '<h2>Lets ask ourselves a few questions.</h2>'
@@ -70,31 +72,93 @@ class Mood {
             e.preventDefault()
             console.log('clicky clack mf')
             moodAdapter.sendNewMoodFetch()
-            Mood.renderMyChart()
-            //submit form to api to create new mood
-            // create new mood from mood class in js within the api call after a successful post request
+        })
 
+        const backBtn = document.getElementById('backBtn')
+        backBtn.addEventListener('click', (e) => {
+            e.preventDefault()
+            Mood.renderMoodForm()
+            document.getElementById(mood).classList.add('mood-button-active')
         })
     }
 
     static renderMyChart(){
+        const moodDates = Mood.all.map(x => x.createdAt)
+        let minDate = 0
+        let moodDateArray = uniqDate().slice(minDate, uniqDate().length)
         let mainDiv = document.getElementById('main')
         let myChart = document.createElement('canvas')
         myChart.id = 'myChart'
-        let moodChart = new Chart(myChart, {
+        let moodChart = (min) => new Chart(myChart, {
             type: 'bar',
             data: {
-                labels: Object.keys(emotions),
-                datasets: [{
-                    label: 'Mood Count',
-                    data: Mood.moodCount()
-                }]
+                labels: uniqDate().slice(min, uniqDate().length) ,//dates Object.keys(emotions)
+                datasets: moodDatasets(min)
             },
-            options: {}
+            options: {
+                scales: {}
+            }
         })
-        myChart.append(moodChart)
+        myChart.append(moodChart(minDate))
         mainDiv.innerHTML = ''
         mainDiv.append(myChart)
+
+
+        function uniqDate() {
+            let array = []
+            moodDates.map(x => x.slice(0, 10)).forEach(x => {
+                if (!array.find(y => x === y )){
+                    array.push(x)
+                }
+            })
+            return array
+        }
+
+        const rangeDiv = document.createElement('div')
+        rangeDiv.classList.add('form-group')
+        rangeDiv.innerHTML = `
+            <label for="formControlRange">Start date: </label>
+            <input type="date" class="form-control-range" id="formControlRange" min='${uniqDate()[0]}' max='${uniqDate()[uniqDate.length-1]}'  value='${uniqDate()[0]}'>`
+        mainDiv.append(rangeDiv)
+
+        document.getElementById('formControlRange').addEventListener('input', (e) => {
+            console.log(e.target.value)
+
+            minDate = uniqDate().indexOf(e.target.value)
+
+            myChart.innerHTML = ''
+            myChart.append(moodChart(minDate))
+        })
+
+        //create array of dates
+        //create second range bar
+        //set range min to zero
+        //set range max to range array length
+        //change date start value when top bar moves
+        // change date end value when bottom bar moves
+        //set the bottom bar min based on the tops value
+
+
+
+        function moodDatasets(min){
+            const arrayDate = []
+            Object.keys(emotions).forEach(e => {
+                const obj = {}
+                const array = []
+
+                moodDateArray.slice(min, moodDateArray.length).forEach(date => {
+                    array.push(Mood.all.filter( x => x.createdAt.slice(0,10) === date).filter(x => x.mood === e).length)
+                })
+
+
+                obj['label'] = e
+                obj['data'] = array
+                obj['backgroundColor'] = emotions[e].backgroundColor
+                arrayDate.push(obj)
+            })
+            //{label: '', data: ''}
+            return arrayDate
+        }
     }
 
     static moodCount(){

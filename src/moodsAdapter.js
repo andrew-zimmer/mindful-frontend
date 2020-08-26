@@ -35,8 +35,7 @@ class MoodsAdapter {
             console.log(json)
             new Mood(json.data.mood)
             Mood.renderMyChart()
-            //create new mood
-            //show user graph
+            //show resources based on mood submitted
         })
     }
 }
