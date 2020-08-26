@@ -1,6 +1,7 @@
 const userAdapter = new UserAdapter()
 const sessionAdapter = new SessionAdapter()
 const moodAdapter = new MoodsAdapter()
+const stoicQuote = new StoicQuotes()
 const mainDiv = document.getElementById('main')
 const dropDown = document.getElementById('navDropDown')
 let mood = ''
@@ -51,11 +52,7 @@ const emotions = {
         resource: 'https://www.healthline.com/health-news/hangry-not-because-youre-extremely-hungry#1',
         backgroundColor: '#82E6F1'
     },
-    angry: {
-        pic: '<i class="far fa-angry"></i>',
-        resource: 'https://www.mindful.org/mindfulness-of-anger/',
-        backgroundColor: '#DE1111'
-    },
+
     confused: {
         pic: '<i class="far fa-flushed"></i>',
         resource: 'https://www.huffpost.com/entry/4-ways-to-find-direction-when-you-are-feeling-confused_b_5798e0dde4b0e339c2400320',
@@ -84,9 +81,16 @@ const emotions = {
     nervous: {
         pic: '<i class="far fa-grin-beam-sweat"></i>',
         resource: 'https://www.webmd.com/mental-health/features/ways-to-reduce-anxiety',
-        backgroundColor: '#B50A0A'
+        backgroundColor: '#DE1111'
     },
+    angry: {
+        pic: '<i class="far fa-angry"></i>',
+        resource: 'https://www.mindful.org/mindfulness-of-anger/',
+        backgroundColor: '#B50A0A'
+    }
 }
+
+stoicQuote.fetchRandomQuote()
 
 const signUpBtn = document.getElementById('signUp')
 const logInBtn = document.getElementById('login')
