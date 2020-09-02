@@ -108,8 +108,3 @@ logInBtn.addEventListener('click', () => {
     dropDown.classList.add('collapsed')
     navBar.classList.remove('show')
 })
-
-document.addEventListener('DOMContentLoaded', () => {
-
-
-})
